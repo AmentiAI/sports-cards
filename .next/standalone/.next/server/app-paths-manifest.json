@@ -1,4 +1,9 @@
 {
+  "/_not-found": "app/_not-found.js",
+  "/budget/page": "app/budget/page.js",
+  "/mid-range/page": "app/mid-range/page.js",
+  "/premium/page": "app/premium/page.js",
   "/page": "app/page.js",
+  "/cart/page": "app/cart/page.js",
   "/admin/page": "app/admin/page.js"
 }

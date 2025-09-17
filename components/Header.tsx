@@ -46,9 +46,27 @@ export default function Header() {
             <Link href="/" className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium">
               Home
             </Link>
-            <Link href="#cards" className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium">
-              Collection
-            </Link>
+            <div className="relative group">
+              <button className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium flex items-center">
+                Collections
+                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="py-2">
+                  <Link href="/budget" className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
+                    Budget ($1-$20)
+                  </Link>
+                  <Link href="/mid-range" className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
+                    Mid-Range ($20-$100)
+                  </Link>
+                  <Link href="/premium" className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
+                    Premium ($100+)
+                  </Link>
+                </div>
+              </div>
+            </div>
             <Link href="/admin" className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium">
               Admin
             </Link>
@@ -90,13 +108,32 @@ export default function Header() {
               >
                 Home
               </Link>
-              <Link 
-                href="#cards" 
-                className="px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Collection
-              </Link>
+              <div className="px-4 py-2">
+                <div className="text-sm font-semibold text-slate-400 mb-2">Collections</div>
+                <div className="ml-4 space-y-1">
+                  <Link 
+                    href="/budget" 
+                    className="block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Budget ($1-$20)
+                  </Link>
+                  <Link 
+                    href="/mid-range" 
+                    className="block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Mid-Range ($20-$100)
+                  </Link>
+                  <Link 
+                    href="/premium" 
+                    className="block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Premium ($100+)
+                  </Link>
+                </div>
+              </div>
               <Link 
                 href="/admin" 
                 className="px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium"
