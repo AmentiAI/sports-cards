@@ -5,6 +5,7 @@ import { SportsCard } from '@/lib/mock-cards'
 import { mockCards } from '@/lib/mock-cards'
 import AdminHeader from '@/components/AdminHeader'
 import CardList from '@/components/CardList'
+import CardForm from '@/components/CardForm'
 import toast from 'react-hot-toast'
 
 export default function AdminPage() {
@@ -24,7 +25,24 @@ export default function AdminPage() {
     setShowForm(true)
   }
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (formData?: any) => {
+    if (formData) {
+      if (editingCard) {
+        // Update existing card
+        setCards(cards.map(card => 
+          card.id === editingCard.id 
+            ? { ...formData, id: editingCard.id }
+            : card
+        ))
+      } else {
+        // Add new card
+        const newCard: SportsCard = {
+          ...formData,
+          id: Math.max(...cards.map(c => c.id), 0) + 1
+        }
+        setCards([...cards, newCard])
+      }
+    }
     setShowForm(false)
     setEditingCard(null)
   }
@@ -54,11 +72,24 @@ export default function AdminPage() {
           </div>
         </div>
 
-        <CardList
-          cards={cards}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
+        {showForm ? (
+          <div className="glass-effect rounded-xl p-8">
+            <CardForm
+              card={editingCard}
+              onSuccess={handleFormSubmit}
+              onCancel={() => {
+                setShowForm(false)
+                setEditingCard(null)
+              }}
+            />
+          </div>
+        ) : (
+          <CardList
+            cards={cards}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+          />
+        )}
       </div>
     </div>
   )

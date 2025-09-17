@@ -1,14 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { ShoppingCart, User, Search, Menu, X } from 'lucide-react'
+import { Phone, User, Search, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import { useCart } from '@/contexts/CartContext'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { getTotalItems } = useCart()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,14 +76,9 @@ export default function Header() {
               <Search size={20} />
             </button>
             
-            <Link href="/cart" className="relative p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300">
-              <ShoppingCart size={20} />
-              {getTotalItems() > 0 && (
-                <div className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold">
-                  {getTotalItems()}
-                </div>
-              )}
-            </Link>
+            <a href="tel:+1234567890" className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300" title="Call for inquiries">
+              <Phone size={20} />
+            </a>
 
             {/* Mobile Menu Button */}
             <button

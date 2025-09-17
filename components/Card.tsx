@@ -1,36 +1,16 @@
 'use client'
 
 import { SportsCard } from '@/lib/mock-cards'
-import { ShoppingCart, Eye, Star, Crown } from 'lucide-react'
+import { Eye, Star, Crown, DollarSign } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
-import { useCart } from '@/contexts/CartContext'
-import toast from 'react-hot-toast'
 
 interface CardProps {
   card: SportsCard
 }
 
 export default function Card({ card }: CardProps) {
-  const [isLoading, setIsLoading] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
-  const { addToCart } = useCart()
-
-  const handleAddToCart = async () => {
-    if (card.isSold) {
-      toast.error('This card is no longer available')
-      return
-    }
-
-    setIsLoading(true)
-    try {
-      await addToCart(card, 1)
-    } catch (error) {
-      toast.error('Failed to add to cart')
-    } finally {
-      setIsLoading(false)
-    }
-  }
 
   const getConditionColor = (condition: string) => {
     switch (condition) {
@@ -92,19 +72,10 @@ export default function Card({ card }: CardProps) {
                 </button>
               </Link>
               <button
-                onClick={handleAddToCart}
-                disabled={isLoading || card.isSold}
-                className={`p-2 rounded-lg transition-all duration-300 hover:scale-110 shadow-lg ${
-                  card.isSold
-                    ? 'bg-slate-500 text-white cursor-not-allowed'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
-                }`}
+                className="p-2 bg-green-600 text-white hover:bg-green-700 rounded-lg transition-all duration-300 hover:scale-110 shadow-lg"
+                title="Contact for purchase"
               >
-                {isLoading ? (
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                ) : (
-                  <ShoppingCart size={18} />
-                )}
+                <DollarSign size={18} />
               </button>
             </div>
           </div>

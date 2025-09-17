@@ -35,8 +35,8 @@ export default function Home() {
               <a href="/premium" className="btn-primary">
                 View All Premium Cards
               </a>
-              <a href="/budget" className="btn-outline">
-                Browse Budget Collection
+              <a href="tel:+1234567890" className="btn-outline">
+                Contact for Purchase
               </a>
             </div>
           </div>
@@ -98,14 +98,14 @@ export default function Home() {
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
               Join thousands of collectors who trust us for authentic, professionally graded sports cards from the golden era of the 90s.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/budget" className="btn-primary text-lg px-8 py-4">
-                Start Collecting Now
-              </a>
-              <a href="/admin" className="btn-outline text-lg px-8 py-4">
-                Sell Your Cards
-              </a>
-            </div>
+                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                     <a href="/budget" className="btn-primary text-lg px-8 py-4">
+                       Browse Collection
+                     </a>
+                     <a href="tel:+1234567890" className="btn-outline text-lg px-8 py-4">
+                       Contact for Purchase
+                     </a>
+                   </div>
           </div>
         </section>
       </main>

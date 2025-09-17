@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 
 interface CardFormProps {
   card?: SportsCard | null
-  onSuccess: () => void
+  onSuccess: (formData?: any) => void
   onCancel: () => void
 }
 
@@ -55,21 +55,12 @@ export default function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
     setIsLoading(true)
 
     try {
-      const url = card ? `/api/cards/${card.id}` : '/api/cards'
-      const method = card ? 'PUT' : 'POST'
-
-      const response = await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to save card')
-      }
-
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 500))
+      
+      // Pass form data to parent component
+      onSuccess(formData)
       toast.success(card ? 'Card updated successfully!' : 'Card created successfully!')
-      onSuccess()
     } catch (error) {
       toast.error('Failed to save card')
     } finally {
