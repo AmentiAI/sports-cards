@@ -55,15 +55,6 @@ export default function AdminPage() {
           <h1 className="text-3xl font-bold text-white">Admin Dashboard</h1>
           <div className="flex space-x-4">
             <button
-              onClick={() => {
-                setCards(mockCards)
-                toast.success('Mock data loaded!')
-              }}
-              className="btn-secondary"
-            >
-              Load Mock Data
-            </button>
-            <button
               onClick={() => setShowForm(true)}
               className="btn-primary"
             >
