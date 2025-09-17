@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ShoppingCart, User, Search, Menu, X, Sparkles } from 'lucide-react'
+import { ShoppingCart, User, Search, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useCart } from '@/contexts/CartContext'
 
@@ -19,111 +19,90 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/10 backdrop-blur-md border-b border-white/20 shadow-2xl' 
+        ? 'glass-effect border-b border-slate-700 shadow-xl' 
         : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo with Amazing Effects */}
+        <div className="flex items-center justify-between h-16">
+          {/* Professional Logo */}
           <Link href="/" className="group flex items-center space-x-3">
-            <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-card-red via-card-gold to-card-blue rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative w-12 h-12 bg-gradient-to-br from-card-red to-card-blue rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <span className="text-white font-black text-xl font-orbitron">SC</span>
-              </div>
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+              <span className="text-white font-bold text-lg">SC</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-black text-white group-hover:text-neon-gold transition-colors duration-300">
-                SPORTS CARDS
+              <span className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
+                Sports Cards
               </span>
-              <span className="text-xs text-white/70 font-orbitron tracking-widest">
-                VINTAGE 90s COLLECTION
+              <span className="text-xs text-slate-400 font-medium tracking-wide">
+                Premium Collection
               </span>
             </div>
           </Link>
 
-          {/* Navigation with Glassmorphism */}
+          {/* Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-            <Link href="/" className="group relative px-6 py-3 rounded-xl text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10">
-              <span className="relative z-10 font-semibold">HOME</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-card-red/20 to-card-blue/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <Link href="/" className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium">
+              Home
             </Link>
-            <Link href="/catalog" className="group relative px-6 py-3 rounded-xl text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10">
-              <span className="relative z-10 font-semibold">CATALOG</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-card-blue/20 to-card-gold/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <Link href="#cards" className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium">
+              Collection
             </Link>
-            <Link href="/about" className="group relative px-6 py-3 rounded-xl text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10">
-              <span className="relative z-10 font-semibold">ABOUT</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-card-gold/20 to-card-red/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <Link href="/admin" className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium">
+              Admin
             </Link>
           </nav>
 
-          {/* Action Buttons with Stunning Effects */}
-          <div className="flex items-center space-x-3">
-            <button className="group relative p-3 text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl">
-              <Search size={22} className="group-hover:scale-110 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-r from-card-blue/20 to-card-gold/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {/* Action Buttons */}
+          <div className="flex items-center space-x-2">
+            <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300">
+              <Search size={20} />
             </button>
             
-            <Link href="/cart" className="group relative p-3 text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl">
-              <ShoppingCart size={22} className="group-hover:scale-110 transition-transform duration-300" />
+            <Link href="/cart" className="relative p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300">
+              <ShoppingCart size={20} />
               {getTotalItems() > 0 && (
-                <div className="absolute -top-1 -right-1 bg-gradient-to-r from-card-red to-red-600 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold animate-pulse">
+                <div className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold">
                   {getTotalItems()}
                 </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-r from-card-red/20 to-card-gold/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
-            
-            <Link href="/admin" className="group relative p-3 text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl">
-              <User size={22} className="group-hover:scale-110 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-r from-card-gold/20 to-card-blue/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden group relative p-3 text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl"
+              className="lg:hidden p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? (
-                <X size={24} className="group-hover:scale-110 transition-transform duration-300" />
-              ) : (
-                <Menu size={24} className="group-hover:scale-110 transition-transform duration-300" />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-r from-card-gold/20 to-card-red/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu with Glassmorphism */}
+        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white/10 backdrop-blur-md border-t border-white/20 shadow-2xl">
-            <nav className="flex flex-col space-y-2 p-4">
+          <div className="lg:hidden absolute top-full left-0 right-0 glass-effect border-t border-slate-700">
+            <nav className="flex flex-col space-y-1 p-4">
               <Link 
                 href="/" 
-                className="group relative px-6 py-4 rounded-xl text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10"
+                className="px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="relative z-10 font-semibold text-lg">HOME</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-card-red/20 to-card-blue/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                Home
               </Link>
               <Link 
-                href="/catalog" 
-                className="group relative px-6 py-4 rounded-xl text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10"
+                href="#cards" 
+                className="px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="relative z-10 font-semibold text-lg">CATALOG</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-card-blue/20 to-card-gold/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                Collection
               </Link>
               <Link 
-                href="/about" 
-                className="group relative px-6 py-4 rounded-xl text-white/90 hover:text-white transition-all duration-300 hover:bg-white/10"
+                href="/admin" 
+                className="px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="relative z-10 font-semibold text-lg">ABOUT</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-card-gold/20 to-card-red/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                Admin
               </Link>
             </nav>
           </div>
