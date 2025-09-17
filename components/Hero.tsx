@@ -33,10 +33,14 @@ export default function Hero() {
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               <span className="gradient-text font-display">
-                Premium Sports Cards
+                VINTAGE
+              </span>
+              <br />
+              <span className="text-4xl md:text-6xl font-bold text-white/90">
+                90s SPORTS CARDS
               </span>
             </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8 rounded-full"></div>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8 rounded-full"></div>
           </div>
 
           {/* Subtitle */}

@@ -33,10 +33,10 @@ export default function Header() {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
-                Sports Cards
+                VINTAGE 90s
               </span>
               <span className="text-xs text-slate-400 font-medium tracking-wide">
-                Premium Collection
+                SPORTS CARDS
               </span>
             </div>
           </Link>
