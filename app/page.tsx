@@ -21,7 +21,7 @@ export default function Home() {
     <div className="min-h-screen bg-slate-900">
       <Header />
       <Hero />
-      <main className="container mx-auto px-4 py-8 pt-16">
+      <main className="container mx-auto px-4 py-8">
         {/* Featured Cards Section - Most Expensive */}
         <section className="mb-16">
           <div className="text-center mb-12">

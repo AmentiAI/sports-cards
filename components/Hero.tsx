@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ShoppingBag, Star, Shield, Award, Users, TrendingUp } from 'lucide-react'
+import { ShoppingBag, Star } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export default function Hero() {
@@ -69,34 +69,6 @@ export default function Hero() {
             </div>
           </div>
           
-          {/* Professional Stats */}
-          <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="glass-effect rounded-xl p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-2">500+</h3>
-                <p className="text-slate-400">Authenticated Cards</p>
-              </div>
-
-              <div className="glass-effect rounded-xl p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-2">1,200+</h3>
-                <p className="text-slate-400">Verified Buyers</p>
-              </div>
-
-              <div className="glass-effect rounded-xl p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-2">99.2%</h3>
-                <p className="text-slate-400">Satisfaction Rate</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
