@@ -120,6 +120,9 @@ export default function Card({ card }: CardProps) {
             <p className="text-slate-400 text-sm">
               {card.year} {card.brand} #{card.cardNumber}
             </p>
+            <p className="text-blue-400 text-xs font-medium">
+              {card.category}
+            </p>
           </div>
           
           {/* Price */}

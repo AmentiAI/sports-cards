@@ -12,6 +12,7 @@ interface CardFormProps {
 }
 
 const conditions = ['Mint', 'Near Mint', 'Excellent', 'Very Good', 'Good', 'Fair', 'Poor']
+const categories = ['Baseball', 'Football', 'Basketball']
 
 export default function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
   const [formData, setFormData] = useState({
@@ -22,6 +23,7 @@ export default function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
     brand: '',
     set: '',
     cardNumber: '',
+    category: 'Basketball' as SportsCard['category'],
     condition: 'Near Mint' as SportsCard['condition'],
     price: 0,
     description: '',
@@ -42,6 +44,7 @@ export default function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
         brand: card.brand || '',
         set: card.set || '',
         cardNumber: card.cardNumber || '',
+        category: card.category || 'Basketball',
         condition: card.condition || 'Near Mint',
         price: card.price || 0,
         description: card.description || '',
@@ -197,6 +200,23 @@ export default function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
               className="input-field"
               placeholder="e.g., 57"
             />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Category *
+            </label>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              required
+              className="input-field"
+            >
+              {categories.map(category => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
           </div>
 
           <div>

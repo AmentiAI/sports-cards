@@ -46,7 +46,29 @@ export default function Header() {
             </Link>
             <div className="relative group">
               <button className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium flex items-center">
-                Collections
+                Categories
+                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="py-2">
+                  <Link href="/baseball" className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
+                    ⚾ Baseball
+                  </Link>
+                  <Link href="/football" className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
+                    🏈 Football
+                  </Link>
+                  <Link href="/basketball" className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
+                    🏀 Basketball
+                  </Link>
+                </div>
+              </div>
+            </div>
+            
+            <div className="relative group">
+              <button className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium flex items-center">
+                Price Ranges
                 <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -102,7 +124,34 @@ export default function Header() {
                 Home
               </Link>
               <div className="px-4 py-2">
-                <div className="text-sm font-semibold text-slate-400 mb-2">Collections</div>
+                <div className="text-sm font-semibold text-slate-400 mb-2">Categories</div>
+                <div className="ml-4 space-y-1">
+                  <Link 
+                    href="/baseball" 
+                    className="block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    ⚾ Baseball
+                  </Link>
+                  <Link 
+                    href="/football" 
+                    className="block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    🏈 Football
+                  </Link>
+                  <Link 
+                    href="/basketball" 
+                    className="block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    🏀 Basketball
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="px-4 py-2">
+                <div className="text-sm font-semibold text-slate-400 mb-2">Price Ranges</div>
                 <div className="ml-4 space-y-1">
                   <Link 
                     href="/budget" 

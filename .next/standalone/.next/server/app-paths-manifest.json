@@ -1,8 +1,11 @@
 {
   "/_not-found": "app/_not-found.js",
+  "/basketball/page": "app/basketball/page.js",
+  "/baseball/page": "app/baseball/page.js",
+  "/football/page": "app/football/page.js",
   "/admin/page": "app/admin/page.js",
   "/budget/page": "app/budget/page.js",
   "/mid-range/page": "app/mid-range/page.js",
-  "/page": "app/page.js",
-  "/premium/page": "app/premium/page.js"
+  "/premium/page": "app/premium/page.js",
+  "/page": "app/page.js"
 }
