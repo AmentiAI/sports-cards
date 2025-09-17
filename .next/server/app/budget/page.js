@@ -23,4 +23,4 @@
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */let r=(0,s(9508).Z)("Star",[["polygon",{points:"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2",key:"8f66p6"}]])},8026:(e,t,s)=>{let{createProxy:r}=s(6843);e.exports=r("C:\\Users\\Wilso\\sports-cards\\node_modules\\next\\dist\\client\\link.js")},646:(e,t,s)=>{e.exports=s(8026)}};var t=require("../../webpack-runtime.js");t.C(e);var s=e=>t(t.s=e),r=t.X(0,[775,278,358],()=>s(8454));module.exports=r})();
+ */let r=(0,s(9508).Z)("Star",[["polygon",{points:"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2",key:"8f66p6"}]])},8026:(e,t,s)=>{let{createProxy:r}=s(6843);e.exports=r("C:\\Users\\Wilso\\sports-cards\\node_modules\\next\\dist\\client\\link.js")},646:(e,t,s)=>{e.exports=s(8026)}};var t=require("../../webpack-runtime.js");t.C(e);var s=e=>t(t.s=e),r=t.X(0,[775,278,680],()=>s(8454));module.exports=r})();

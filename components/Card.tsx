@@ -11,6 +11,7 @@ interface CardProps {
 
 export default function Card({ card }: CardProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const [showBack, setShowBack] = useState(false)
 
   const getConditionColor = (condition: string) => {
     switch (condition) {
@@ -39,11 +40,14 @@ export default function Card({ card }: CardProps) {
     >
       <div className="card-container p-6 card-hover">
         {/* Card Image */}
-        <div className="relative aspect-[3/4] bg-slate-700 rounded-lg mb-4 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300">
-          {card.imageUrl ? (
+        <div 
+          className="relative aspect-[3/4] bg-slate-700 rounded-lg mb-4 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300 cursor-pointer"
+          onClick={() => setShowBack(!showBack)}
+        >
+          {(showBack ? card.backImageUrl : card.imageUrl) ? (
             <img
-              src={card.imageUrl}
-              alt={card.name}
+              src={showBack ? card.backImageUrl : card.imageUrl}
+              alt={`${card.name} ${showBack ? 'Back' : 'Front'}`}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
           ) : (
@@ -92,6 +96,13 @@ export default function Card({ card }: CardProps) {
             <div className="absolute top-3 left-3 premium-badge">
               <Crown size={12} className="mr-1" />
               PREMIUM
+            </div>
+          )}
+
+          {/* Flip Indicator */}
+          {card.backImageUrl && (
+            <div className="absolute bottom-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded">
+              {showBack ? 'Front' : 'Back'}
             </div>
           )}
         </div>

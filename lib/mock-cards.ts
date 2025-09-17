@@ -11,6 +11,7 @@ export interface SportsCard {
   price: number;
   description: string;
   imageUrl?: string;
+  backImageUrl?: string;
   isSold: boolean;
 }
 
@@ -28,6 +29,7 @@ export const mockCards: SportsCard[] = [
     price: 2500.00,
     description: "The most iconic basketball card of all time. This 1986 Fleer Michael Jordan rookie card is in excellent condition with sharp corners and vibrant colors.",
     imageUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -43,6 +45,7 @@ export const mockCards: SportsCard[] = [
     price: 450.00,
     description: "The Kid's iconic Upper Deck rookie card. One of the most sought-after baseball cards from the 90s.",
     imageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -58,6 +61,7 @@ export const mockCards: SportsCard[] = [
     price: 125.00,
     description: "The elusive running back's rookie card. Known for his incredible agility and rushing yards.",
     imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -88,6 +92,7 @@ export const mockCards: SportsCard[] = [
     price: 180.00,
     description: "The Captain's rookie card. Future Hall of Famer and Yankees legend.",
     imageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -103,6 +108,7 @@ export const mockCards: SportsCard[] = [
     price: 320.00,
     description: "The golfing legend's rookie card. One of the most influential athletes of all time.",
     imageUrl: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -133,6 +139,7 @@ export const mockCards: SportsCard[] = [
     price: 75.00,
     description: "The Sheriff's rookie card. One of the greatest quarterbacks in NFL history.",
     imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -163,6 +170,7 @@ export const mockCards: SportsCard[] = [
     price: 45.00,
     description: "The switch-hitting third baseman's rookie card. Braves legend and Hall of Famer.",
     imageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -178,6 +186,7 @@ export const mockCards: SportsCard[] = [
     price: 35.00,
     description: "The Gunslinger's rookie card. Known for his durability and gunslinging style.",
     imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -208,6 +217,7 @@ export const mockCards: SportsCard[] = [
     price: 40.00,
     description: "The Freak's rookie card. One of the most talented wide receivers ever.",
     imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -238,6 +248,7 @@ export const mockCards: SportsCard[] = [
     price: 15.00,
     description: "The GOAT's rookie card. The greatest quarterback of all time.",
     imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -268,6 +279,7 @@ export const mockCards: SportsCard[] = [
     price: 12.00,
     description: "Classic Jeter base card from his prime years with the Yankees.",
     imageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -298,6 +310,7 @@ export const mockCards: SportsCard[] = [
     price: 8.00,
     description: "Classic Griffey base card from his Mariners days.",
     imageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
     isSold: false
   },
   {
@@ -313,6 +326,7 @@ export const mockCards: SportsCard[] = [
     price: 15.00,
     description: "Classic Sanders base card from his prime years with the Lions.",
     imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
+    backImageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=600&fit=crop",
     isSold: false
   }
 ];

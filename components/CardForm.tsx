@@ -26,6 +26,7 @@ export default function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
     price: 0,
     description: '',
     imageUrl: '',
+    backImageUrl: '',
     isSold: false
   })
 
@@ -45,6 +46,7 @@ export default function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
         price: card.price || 0,
         description: card.description || '',
         imageUrl: card.imageUrl || '',
+        backImageUrl: card.backImageUrl || '',
         isSold: card.isSold || false
       })
     }
@@ -231,17 +233,33 @@ export default function CardForm({ card, onSuccess, onCancel }: CardFormProps) {
             />
           </div>
 
-          <div className="md:col-span-2">
+          <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Image URL
+              Front Image URL *
             </label>
             <input
               type="url"
               name="imageUrl"
               value={formData.imageUrl}
               onChange={handleChange}
+              required
               className="input-field"
-              placeholder="https://example.com/image.jpg"
+              placeholder="https://example.com/front-image.jpg"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Back Image URL *
+            </label>
+            <input
+              type="url"
+              name="backImageUrl"
+              value={formData.backImageUrl}
+              onChange={handleChange}
+              required
+              className="input-field"
+              placeholder="https://example.com/back-image.jpg"
             />
           </div>
 
