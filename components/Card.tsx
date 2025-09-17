@@ -75,12 +75,14 @@ export default function Card({ card }: CardProps) {
                   <Eye size={18} />
                 </button>
               </Link>
-              <button
-                className="p-2 bg-green-600 text-white hover:bg-green-700 rounded-lg transition-all duration-300 hover:scale-110 shadow-lg"
-                title="Contact for purchase"
-              >
-                <DollarSign size={18} />
-              </button>
+              <Link href="/checkout">
+                <button
+                  className="p-2 bg-green-600 text-white hover:bg-green-700 rounded-lg transition-all duration-300 hover:scale-110 shadow-lg"
+                  title="Purchase this card"
+                >
+                  <DollarSign size={18} />
+                </button>
+              </Link>
             </div>
           </div>
 
