@@ -11,9 +11,12 @@ export async function GET(
     const query = `
       SELECT 
         id, name, player, team, year, brand, set_name as "set", 
-        card_number as "cardNumber", category, condition, price, 
-        description, image_url as "imageUrl", back_image_url as "backImageUrl", 
-        is_sold as "isSold", created_at, updated_at
+        card_number as "cardNumber", category, condition, 
+        card_type as "cardType", status, digital_price as "digitalPrice", 
+        physical_price as "physicalPrice", price, description, 
+        image_url as "imageUrl", back_image_url as "backImageUrl", 
+        digital_asset_id as "digitalAssetId", current_owner_id as "currentOwnerId",
+        is_listed as "isListed", is_sold as "isSold", created_at, updated_at
       FROM sports_cards 
       WHERE id = $1
     `

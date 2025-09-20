@@ -10,16 +10,24 @@ export async function GET(request: NextRequest) {
     const maxPrice = searchParams.get('maxPrice')
     const limit = searchParams.get('limit')
     const offset = searchParams.get('offset')
+    const countOnly = searchParams.get('count') === 'true'
 
     let query = `
       SELECT 
         id, name, player, team, year, brand, set_name as "set", 
-        card_number as "cardNumber", category, condition, price, 
-        description, image_url as "imageUrl", back_image_url as "backImageUrl", 
-        is_sold as "isSold", created_at, updated_at
+        card_number as "cardNumber", category, condition, 
+        card_type as "cardType", status, digital_price as "digitalPrice", 
+        physical_price as "physicalPrice", price, description, 
+        image_url as "imageUrl", back_image_url as "backImageUrl", 
+        digital_asset_id as "digitalAssetId", current_owner_id as "currentOwnerId",
+        is_listed as "isListed", is_sold as "isSold", created_at, updated_at
       FROM sports_cards 
       WHERE 1=1
     `
+    
+    if (countOnly) {
+      query = 'SELECT COUNT(*) as count FROM sports_cards WHERE 1=1'
+    }
     const params: any[] = []
     let paramCount = 0
 
@@ -54,22 +62,31 @@ export async function GET(request: NextRequest) {
       params.push(parseFloat(maxPrice))
     }
 
-    // Add ordering and pagination
-    query += ` ORDER BY price DESC`
-    
-    if (limit) {
-      paramCount++
-      query += ` LIMIT $${paramCount}`
-      params.push(parseInt(limit))
-    }
+    // Add ordering and pagination (only if not count only)
+    if (!countOnly) {
+      query += ` ORDER BY price DESC`
+      
+      if (limit) {
+        paramCount++
+        query += ` LIMIT $${paramCount}`
+        params.push(parseInt(limit))
+      }
 
-    if (offset) {
-      paramCount++
-      query += ` OFFSET $${paramCount}`
-      params.push(parseInt(offset))
+      if (offset) {
+        paramCount++
+        query += ` OFFSET $${paramCount}`
+        params.push(parseInt(offset))
+      }
     }
 
     const result = await pool.query(query, params)
+    
+    if (countOnly) {
+      return NextResponse.json({
+        success: true,
+        count: parseInt(result.rows[0].count)
+      })
+    }
     
     return NextResponse.json({
       success: true,

@@ -224,7 +224,7 @@ export class DatabaseService {
       const query = 'DELETE FROM sports_cards WHERE id = $1'
       const result = await pool.query(query, [id])
       
-      return result.rowCount > 0
+      return (result.rowCount || 0) > 0
 
     } catch (error) {
       console.error('Error deleting card:', error)

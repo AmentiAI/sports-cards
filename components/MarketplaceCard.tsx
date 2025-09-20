@@ -31,6 +31,24 @@ export default function MarketplaceCard({ card }: MarketplaceCardProps) {
     }
   }
 
+  const handleAddBothToCart = async () => {
+    setIsLoading(true)
+    try {
+      // TODO: Implement cart functionality for both digital and physical cards
+      console.log(`Adding both digital and physical card to cart:`, card.name)
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      // Show success message
+      alert(`${card.name} (both formats) added to cart!`)
+    } catch (error) {
+      console.error('Error adding to cart:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const getCardTypeIcon = () => {
     switch (card.cardType) {
       case 'digital':
@@ -189,7 +207,13 @@ export default function MarketplaceCard({ card }: MarketplaceCardProps) {
                 </>
               ) : (
                 <button
-                  onClick={() => handleAddToCart(card.cardType)}
+                  onClick={() => {
+                    if (card.cardType === 'both') {
+                      handleAddBothToCart()
+                    } else {
+                      handleAddToCart(card.cardType)
+                    }
+                  }}
                   disabled={isLoading}
                   className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
                 >

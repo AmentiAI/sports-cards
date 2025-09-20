@@ -1,11 +1,8 @@
-import { DatabaseService } from './database-service'
 import { SportsCard } from './mock-cards'
 
 // This service provides a unified interface for fetching cards
-// It will try to use the database first, then fall back to mock data if needed
+// It uses API routes for database operations to avoid client-side Node.js dependencies
 export class CardsService {
-  private static useDatabase = true
-
   static async getCards(filters: {
     category?: string
     search?: string
@@ -15,13 +12,24 @@ export class CardsService {
     offset?: number
   } = {}): Promise<SportsCard[]> {
     try {
-      if (this.useDatabase) {
-        const dbCards = await DatabaseService.getCards(filters)
-        return this.convertDbCardsToSportsCards(dbCards)
+      // Use API route for database operations
+      const params = new URLSearchParams()
+      if (filters.category) params.append('category', filters.category)
+      if (filters.search) params.append('search', filters.search)
+      if (filters.minPrice) params.append('minPrice', filters.minPrice.toString())
+      if (filters.maxPrice) params.append('maxPrice', filters.maxPrice.toString())
+      if (filters.limit) params.append('limit', filters.limit.toString())
+      if (filters.offset) params.append('offset', filters.offset.toString())
+
+      const response = await fetch(`/api/cards?${params.toString()}`)
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success) {
+          return data.data
+        }
       }
     } catch (error) {
-      console.warn('Database unavailable, falling back to mock data:', error)
-      this.useDatabase = false
+      console.warn('API unavailable, falling back to mock data:', error)
     }
 
     // Fallback to mock data
@@ -30,13 +38,15 @@ export class CardsService {
 
   static async getCardById(id: number): Promise<SportsCard | null> {
     try {
-      if (this.useDatabase) {
-        const dbCard = await DatabaseService.getCardById(id)
-        return dbCard ? this.convertDbCardToSportsCard(dbCard) : null
+      const response = await fetch(`/api/cards/${id}`)
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success) {
+          return data.data
+        }
       }
     } catch (error) {
-      console.warn('Database unavailable, falling back to mock data:', error)
-      this.useDatabase = false
+      console.warn('API unavailable, falling back to mock data:', error)
     }
 
     // Fallback to mock data
@@ -58,12 +68,19 @@ export class CardsService {
 
   static async getCardCountByCategory(category?: string): Promise<number> {
     try {
-      if (this.useDatabase) {
-        return await DatabaseService.getCardCountByCategory(category)
+      const params = new URLSearchParams()
+      if (category) params.append('category', category)
+      params.append('count', 'true')
+
+      const response = await fetch(`/api/cards?${params.toString()}`)
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success) {
+          return data.count || 0
+        }
       }
     } catch (error) {
-      console.warn('Database unavailable, falling back to mock data:', error)
-      this.useDatabase = false
+      console.warn('API unavailable, falling back to mock data:', error)
     }
 
     // Fallback to mock data
@@ -74,30 +91,6 @@ export class CardsService {
     return mockCards.length
   }
 
-  // Convert database cards to SportsCard format
-  private static convertDbCardsToSportsCards(dbCards: any[]): SportsCard[] {
-    return dbCards.map(dbCard => this.convertDbCardToSportsCard(dbCard))
-  }
-
-  private static convertDbCardToSportsCard(dbCard: any): SportsCard {
-    return {
-      id: dbCard.id,
-      name: dbCard.name,
-      player: dbCard.player,
-      team: dbCard.team,
-      year: dbCard.year,
-      brand: dbCard.brand,
-      set: dbCard.set,
-      cardNumber: dbCard.cardNumber,
-      category: dbCard.category,
-      condition: dbCard.condition,
-      price: parseFloat(dbCard.price),
-      description: dbCard.description,
-      imageUrl: dbCard.imageUrl,
-      backImageUrl: dbCard.backImageUrl,
-      isSold: dbCard.isSold
-    }
-  }
 
   // Fallback to mock data
   private static async getMockCards(filters: {

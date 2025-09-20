@@ -90,8 +90,8 @@ export default function Cart() {
                             <h4 className="text-white font-semibold text-sm mb-1 truncate">
                               {item.name}
                             </h4>
-                            <p className="text-slate-400 text-xs mb-2">
-                              {item.sport} • {item.year} • {item.condition}
+                            <p className="text-slate-400 text-xs mb-2">  
+                              {item.category} • {item.year} • {item.condition}
                             </p>
                             <div className="flex items-center justify-between">
                               <span className="text-green-400 font-bold">

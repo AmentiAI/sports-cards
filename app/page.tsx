@@ -9,24 +9,19 @@ import NewsletterSignup from '@/components/NewsletterSignup'
 import CollectorCommunity from '@/components/CollectorCommunity'
 import { cardsService } from '@/lib/cards-service'
 
-export default async function Home() {
-  // Try to get cards from database, fallback to mock data
-  let cards = mockCards
-  try {
-    const dbCards = await cardsService.getCards()
-    cards = dbCards.length > 0 ? dbCards : mockCards
-  } catch (error) {
-    console.warn('Using mock data as fallback:', error)
-  }
+export default function Home() {
+  // Use mock data for now to avoid build issues
+  // In production, you would fetch this data on the server side
+  const cards = mockCards
 
   // Sort cards by price (highest first) for homepage showcase
-  const sortedCards = [...cards].sort((a, b) => b.price - a.price)
+  const sortedCards = [...cards].sort((a, b) => (b.digitalPrice || b.physicalPrice || b.price) - (a.digitalPrice || a.physicalPrice || a.price))
   const featuredCards = sortedCards.slice(0, 6) // Show top 6 most expensive cards
 
-  // Get card counts by category
-  const baseballCount = await cardsService.getCardCountByCategory('Baseball')
-  const footballCount = await cardsService.getCardCountByCategory('Football')
-  const basketballCount = await cardsService.getCardCountByCategory('Basketball')
+  // Get card counts by category (using mock data for now)
+  const baseballCount = cards.filter(card => card.category === 'Baseball').length
+  const footballCount = cards.filter(card => card.category === 'Football').length
+  const basketballCount = cards.filter(card => card.category === 'Basketball').length
 
   return (
     <div className="min-h-screen bg-slate-900">

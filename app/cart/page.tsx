@@ -69,7 +69,7 @@ export default function CartPage() {
                       </h3>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="bg-blue-600/20 text-blue-300 px-3 py-1 rounded-full text-sm">
-                          {item.sport}
+                          {item.category}
                         </span>
                         <span className="bg-purple-600/20 text-purple-300 px-3 py-1 rounded-full text-sm">
                           {item.year}
