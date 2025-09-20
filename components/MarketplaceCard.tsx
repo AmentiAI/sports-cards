@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Eye, ShoppingCart, Heart, Share2, Package, Smartphone } from 'lucide-react'
+import { Eye, ShoppingCart, Heart, Share2, Package, Smartphone, Users } from 'lucide-react'
 import { SportsCard } from '@/lib/mock-cards'
+import { useAuth } from '@/contexts/AuthContext'
+import TradeOfferModal from './TradeOfferModal'
 
 interface MarketplaceCardProps {
   card: SportsCard
@@ -12,6 +14,8 @@ interface MarketplaceCardProps {
 export default function MarketplaceCard({ card }: MarketplaceCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [showTradeModal, setShowTradeModal] = useState(false)
+  const { user, isAuthenticated } = useAuth()
 
   const handleAddToCart = async (cardType: 'digital' | 'physical') => {
     setIsLoading(true)
@@ -221,6 +225,17 @@ export default function MarketplaceCard({ card }: MarketplaceCardProps) {
                   <span>Add to Cart</span>
                 </button>
               )}
+              
+              {/* Trade Button - Only show if user is authenticated and doesn't own this card */}
+              {isAuthenticated && user && card.currentOwnerId !== user.id && (
+                <button
+                  onClick={() => setShowTradeModal(true)}
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
+                >
+                  <Users size={16} />
+                  <span>Make Trade Offer</span>
+                </button>
+              )}
             </>
           )}
           
@@ -238,6 +253,18 @@ export default function MarketplaceCard({ card }: MarketplaceCardProps) {
           </div>
         )}
       </div>
+
+      {/* Trade Offer Modal */}
+      <TradeOfferModal
+        isOpen={showTradeModal}
+        onClose={() => setShowTradeModal(false)}
+        targetCard={card}
+        userCards={[]} // TODO: Fetch user's cards
+        onSuccess={() => {
+          // TODO: Show success message
+          console.log('Trade offer sent successfully!')
+        }}
+      />
     </div>
   )
 }

@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react'
 import { SportsCard } from '@/lib/mock-cards'
 import MarketplaceCard from '@/components/MarketplaceCard'
 import Header from '@/components/Header'
+import CardListingForm from '@/components/CardListingForm'
 import { cardsService } from '@/lib/cards-service'
-import { Filter, SortAsc, SortDesc, Grid, List } from 'lucide-react'
+import { useAuth } from '@/contexts/AuthContext'
+import { Filter, SortAsc, SortDesc, Grid, List, Plus } from 'lucide-react'
 
 export default function MarketplacePage() {
   const [cards, setCards] = useState<SportsCard[]>([])
@@ -16,6 +18,8 @@ export default function MarketplacePage() {
   const [selectedCardType, setSelectedCardType] = useState('')
   const [sortBy, setSortBy] = useState('price_desc')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [showListingForm, setShowListingForm] = useState(false)
+  const { isAuthenticated } = useAuth()
 
   useEffect(() => {
     const loadCards = async () => {
@@ -97,8 +101,19 @@ export default function MarketplacePage() {
           <p className="text-xl text-slate-300 mb-6">
             Trade digital cards instantly or have them shipped to you
           </p>
-          <div className="text-2xl font-bold text-white">
-            {filteredCards.length} Cards Available
+          <div className="flex items-center justify-center space-x-4 mb-4">
+            <div className="text-2xl font-bold text-white">
+              {filteredCards.length} Cards Available
+            </div>
+            {isAuthenticated && (
+              <button
+                onClick={() => setShowListingForm(true)}
+                className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-300"
+              >
+                <Plus size={16} />
+                <span>List Your Card</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -217,6 +232,24 @@ export default function MarketplacePage() {
             ))}
           </div>
         )}
+
+        {/* Card Listing Form Modal */}
+        <CardListingForm
+          isOpen={showListingForm}
+          onClose={() => setShowListingForm(false)}
+          onSuccess={() => {
+            // Refresh the cards list
+            const loadCards = async () => {
+              try {
+                const allCards = await cardsService.getCards()
+                setCards(allCards)
+              } catch (error) {
+                console.error('Error loading cards:', error)
+              }
+            }
+            loadCards()
+          }}
+        />
       </main>
     </div>
   )

@@ -1,13 +1,20 @@
 'use client'
 
 import Link from 'next/link'
-import { Search, Menu, X } from 'lucide-react'
+import { Search, Menu, X, LogIn, UserPlus } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import Cart from './Cart'
+import LoginModal from './LoginModal'
+import RegisterModal from './RegisterModal'
+import UserMenu from './UserMenu'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
+  const { user, isAuthenticated } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,6 +86,28 @@ export default function Header() {
             
             <Cart />
 
+            {/* Authentication Buttons */}
+            {isAuthenticated ? (
+              <UserMenu />
+            ) : (
+              <>
+                <button
+                  onClick={() => setIsLoginModalOpen(true)}
+                  className="hidden md:flex items-center space-x-2 px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300 touch-manipulation"
+                >
+                  <LogIn size={16} />
+                  <span className="text-sm">Sign In</span>
+                </button>
+                <button
+                  onClick={() => setIsRegisterModalOpen(true)}
+                  className="hidden md:flex items-center space-x-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 touch-manipulation"
+                >
+                  <UserPlus size={16} />
+                  <span className="text-sm">Sign Up</span>
+                </button>
+              </>
+            )}
+
             {/* Mobile Menu Button */}
             <button
               className="lg:hidden p-2 md:p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300 touch-manipulation"
@@ -126,10 +155,55 @@ export default function Header() {
                   </Link>
                 </div>
               </div>
+              
+              {/* Mobile Authentication */}
+              {!isAuthenticated && (
+                <div className="px-4 py-2 border-t border-slate-700 mt-4">
+                  <button
+                    onClick={() => {
+                      setIsLoginModalOpen(true)
+                      setIsMenuOpen(false)
+                    }}
+                    className="w-full flex items-center space-x-2 px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium mb-2"
+                  >
+                    <LogIn size={16} />
+                    <span>Sign In</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsRegisterModalOpen(true)
+                      setIsMenuOpen(false)
+                    }}
+                    className="w-full flex items-center space-x-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 font-medium"
+                  >
+                    <UserPlus size={16} />
+                    <span>Sign Up</span>
+                  </button>
+                </div>
+              )}
             </nav>
           </div>
         )}
       </div>
+
+      {/* Authentication Modals */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSwitchToRegister={() => {
+          setIsLoginModalOpen(false)
+          setIsRegisterModalOpen(true)
+        }}
+      />
+      
+      <RegisterModal
+        isOpen={isRegisterModalOpen}
+        onClose={() => setIsRegisterModalOpen(false)}
+        onSwitchToLogin={() => {
+          setIsRegisterModalOpen(false)
+          setIsLoginModalOpen(true)
+        }}
+      />
     </header>
   )
 }
