@@ -31,40 +31,52 @@ export default function Hero() {
         <div className="max-w-6xl mx-auto">
           {/* Main Title */}
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              <span className="gradient-text font-display">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight px-4">
+              <span className="gradient-text font-display block">
                 VINTAGE
               </span>
-              <br />
-              <span className="text-4xl md:text-6xl font-bold text-white/90">
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white/90 block mt-2">
                 90s SPORTS CARDS
               </span>
             </h1>
-            <div className="w-32 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8 rounded-full"></div>
+            <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 md:mb-8 rounded-full"></div>
           </div>
 
           {/* Subtitle */}
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-xl md:text-2xl text-slate-300 mb-4 font-medium">
+            <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-3 md:mb-4 font-medium px-4">
               Authentic 90s Collection • Professional Grading • Secure Transactions
             </p>
-            <p className="text-lg text-slate-400 mb-12 leading-relaxed max-w-4xl mx-auto">
-              Discover the most valuable sports cards from the golden era of the 90s. 
-              Our curated collection features authenticated, professionally graded cards from the most iconic athletes.
+            <p className="text-base sm:text-lg text-slate-400 mb-4 md:mb-6 leading-relaxed max-w-4xl mx-auto px-4">
+              Own the cards that defined a generation. Our authenticated, PSA-graded collection features the most sought-after cards from Michael Jordan, Derek Jeter, Kobe Bryant, and more legends.
             </p>
+            <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 text-xs sm:text-sm text-slate-300 mb-8 md:mb-12 px-4">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <span>5,000+ Happy Collectors</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                <span>100% Authentic Guarantee</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                <span>30-Day Return Policy</span>
+              </div>
+            </div>
           </div>
 
           {/* Action Buttons */}
           <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Link href="#cards" className="btn-primary text-base px-8 py-3">
-                <ShoppingBag className="inline-block mr-2 w-5 h-5" />
-                Browse Collection
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-12 md:mb-16 px-4">
+              <Link href="/baseball" className="btn-primary text-sm sm:text-base px-6 md:px-8 py-3 md:py-4 w-full sm:w-auto">
+                <ShoppingBag className="inline-block mr-2 w-4 h-4 md:w-5 md:h-5" />
+                Browse Baseball Cards
               </Link>
               
-              <Link href="#about" className="btn-outline text-base px-8 py-3">
-                <Star className="inline-block mr-2 w-5 h-5" />
-                Learn More
+              <Link href="/football" className="btn-outline text-sm sm:text-base px-6 md:px-8 py-3 md:py-4 w-full sm:w-auto">
+                <Star className="inline-block mr-2 w-4 h-4 md:w-5 md:h-5" />
+                Browse Football Cards
               </Link>
             </div>
           </div>

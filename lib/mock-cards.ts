@@ -9,11 +9,18 @@ export interface SportsCard {
   cardNumber: string;
   category: 'Baseball' | 'Football' | 'Basketball';
   condition: 'Mint' | 'Near Mint' | 'Excellent' | 'Very Good' | 'Good' | 'Fair' | 'Poor';
-  price: number;
+  cardType: 'digital' | 'physical' | 'both';
+  status: 'available' | 'listed' | 'sold' | 'shipped' | 'delivered';
+  digitalPrice?: number;
+  physicalPrice?: number;
+  price: number; // Legacy field for backward compatibility
   description: string;
   imageUrl?: string;
   backImageUrl?: string;
-  isSold: boolean;
+  digitalAssetId?: string;
+  currentOwnerId?: number;
+  isListed: boolean;
+  isSold: boolean; // Legacy field for backward compatibility
 }
 
 export const mockCards: SportsCard[] = [
@@ -28,10 +35,16 @@ export const mockCards: SportsCard[] = [
     cardNumber: "57",
     category: "Basketball",
     condition: "Near Mint",
+    cardType: "both",
+    status: "available",
+    digitalPrice: 2000.00,
+    physicalPrice: 2500.00,
     price: 2500.00,
     description: "The most iconic basketball card of all time. This 1986 Fleer Michael Jordan rookie card is in excellent condition with sharp corners and vibrant colors.",
     imageUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=600&fit=crop",
     backImageUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=600&fit=crop",
+    digitalAssetId: "mj86_001",
+    isListed: true,
     isSold: false
   },
   {
@@ -45,10 +58,15 @@ export const mockCards: SportsCard[] = [
     cardNumber: "1",
     category: "Baseball",
     condition: "Mint",
+    cardType: "physical",
+    status: "available",
+    digitalPrice: null,
+    physicalPrice: 450.00,
     price: 450.00,
     description: "The Kid's iconic Upper Deck rookie card. One of the most sought-after baseball cards from the 90s.",
     imageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
     backImageUrl: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=400&h=600&fit=crop",
+    isListed: true,
     isSold: false
   },
   {

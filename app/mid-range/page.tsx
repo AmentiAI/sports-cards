@@ -12,7 +12,7 @@ export default function MidRangePage() {
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-16 pb-8">
+      <section className="pt-20 pb-8">
         <div className="container mx-auto px-4">
           <div className="flex items-center mb-8">
             <Link href="/" className="p-2 text-slate-400 hover:text-white transition-colors mr-4">

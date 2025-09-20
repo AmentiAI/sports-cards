@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { Phone, User, Search, Menu, X } from 'lucide-react'
+import { Search, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import Cart from './Cart'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -44,6 +45,9 @@ export default function Header() {
             <Link href="/" className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium">
               Home
             </Link>
+            <Link href="/marketplace" className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium">
+              Marketplace
+            </Link>
             <div className="relative group">
               <button className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium flex items-center">
                 Categories
@@ -65,49 +69,22 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            
-            <div className="relative group">
-              <button className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium flex items-center">
-                Price Ranges
-                <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <div className="py-2">
-                  <Link href="/budget" className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
-                    Budget ($1-$20)
-                  </Link>
-                  <Link href="/mid-range" className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
-                    Mid-Range ($20-$100)
-                  </Link>
-                  <Link href="/premium" className="block px-4 py-2 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors">
-                    Premium ($100+)
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <Link href="/admin" className="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium">
-              Admin
-            </Link>
           </nav>
 
           {/* Action Buttons */}
-          <div className="flex items-center space-x-2">
-            <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300">
-              <Search size={20} />
+          <div className="flex items-center space-x-1 md:space-x-2">
+            <button className="p-2 md:p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300 touch-manipulation">
+              <Search size={18} className="md:w-5 md:h-5" />
             </button>
             
-            <a href="tel:+1234567890" className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300" title="Call for inquiries">
-              <Phone size={20} />
-            </a>
+            <Cart />
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300"
+              className="lg:hidden p-2 md:p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-all duration-300 touch-manipulation"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {isMenuOpen ? <X size={18} className="md:w-5 md:h-5" /> : <Menu size={18} className="md:w-5 md:h-5" />}
             </button>
           </div>
         </div>
@@ -149,40 +126,6 @@ export default function Header() {
                   </Link>
                 </div>
               </div>
-              
-              <div className="px-4 py-2">
-                <div className="text-sm font-semibold text-slate-400 mb-2">Price Ranges</div>
-                <div className="ml-4 space-y-1">
-                  <Link 
-                    href="/budget" 
-                    className="block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Budget ($1-$20)
-                  </Link>
-                  <Link 
-                    href="/mid-range" 
-                    className="block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Mid-Range ($20-$100)
-                  </Link>
-                  <Link 
-                    href="/premium" 
-                    className="block px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 text-sm"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Premium ($100+)
-                  </Link>
-                </div>
-              </div>
-              <Link 
-                href="/admin" 
-                className="px-4 py-3 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Admin
-              </Link>
             </nav>
           </div>
         )}

@@ -1,9 +1,10 @@
 'use client'
 
 import { SportsCard } from '@/lib/mock-cards'
-import { Eye, Star, Crown, DollarSign } from 'lucide-react'
+import { Eye, Star, Crown, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useCart } from '@/contexts/CartContext'
 
 interface CardProps {
   card: SportsCard
@@ -12,6 +13,13 @@ interface CardProps {
 export default function Card({ card }: CardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [showBack, setShowBack] = useState(false)
+  const { addToCart, isLoading } = useCart()
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addToCart(card)
+  }
 
   const getConditionColor = (condition: string) => {
     switch (condition) {
@@ -41,7 +49,7 @@ export default function Card({ card }: CardProps) {
       <div className="card-container p-6 card-hover">
         {/* Card Image */}
         <div 
-          className="relative aspect-[3/4] bg-slate-700 rounded-lg mb-4 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300 cursor-pointer"
+          className="relative aspect-[3/4] bg-slate-700 rounded-lg mb-4 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300 cursor-pointer touch-manipulation"
           onClick={() => setShowBack(!showBack)}
         >
           {(showBack ? card.backImageUrl : card.imageUrl) ? (
@@ -71,18 +79,20 @@ export default function Card({ card }: CardProps) {
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="flex space-x-2">
               <Link href={`/card/${card.id}`}>
-                <button className="p-2 bg-white/90 text-slate-700 hover:text-blue-600 hover:bg-white rounded-lg transition-all duration-300 hover:scale-110 shadow-lg">
-                  <Eye size={18} />
+                <button className="p-2 md:p-3 bg-white/90 text-slate-700 hover:text-blue-600 hover:bg-white rounded-lg transition-all duration-300 hover:scale-110 shadow-lg touch-manipulation">
+                  <Eye size={16} className="md:w-5 md:h-5" />
                 </button>
               </Link>
-              <Link href="/checkout">
+              {!card.isSold && (
                 <button
-                  className="p-2 bg-green-600 text-white hover:bg-green-700 rounded-lg transition-all duration-300 hover:scale-110 shadow-lg"
-                  title="Purchase this card"
+                  onClick={handleAddToCart}
+                  disabled={isLoading}
+                  className="p-2 md:p-3 bg-green-600 text-white hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-all duration-300 hover:scale-110 shadow-lg touch-manipulation"
+                  title="Add to cart"
                 >
-                  <DollarSign size={18} />
+                  <ShoppingCart size={16} className="md:w-5 md:h-5" />
                 </button>
-              </Link>
+              )}
             </div>
           </div>
 
